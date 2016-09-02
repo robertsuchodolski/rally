@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Rally - Home Page</title>
+    <title>Rally - Panel Administracyjny</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
@@ -42,41 +42,14 @@
 
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Aktualności</a></li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">WRC<span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{url('admin/users/')}}">Użytkownicy<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Aktualności</a></li>
-                        <li><a href="#">Kalendarz</a></li>
-                        <li><a href="#">Punktacja</a></li>
+                        <li><a href="{{url('admin/users/create')}}">Utwórz</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">ERC<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Aktualności</a></li>
-                        <li><a href="#">Kalendarz</a></li>
-                        <li><a href="#">Punktacja</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">RSMP<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Aktualności</a></li>
-                        <li><a href="#">Kalendarz</a></li>
-                        <li><a href="#">Punktacja</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Inne<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Aktualności</a></li>
-                        <li><a href="#">Kalendarz</a></li>
-                        <li><a href="#">Punktacja</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Galeria</a></li>
-                <li><a href="#">O Nas</a></li>
+                <li><a href="#">Posty</a></li>
+                <li><a href="#">Kategorie</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
@@ -84,16 +57,18 @@
                     <li><a href="{{ url('/login')}}"><span class="glyphicon glyphicon-log-in"></span> Zaloguj się</a></li>
                 @else
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->name }}
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{url('/admin')}}"><span class="glyphicon glyphicon-wrench"></span> Ustawienia</a></li>
                             <li>
                                 <a href="{{ url('/logout') }}"
                                    onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-out"></span> Wyloguj się</a>
+                                                 document.getElementById('logout-form').submit();">
+                                    Wyloguj się
+                                </a>
 
                                 <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
