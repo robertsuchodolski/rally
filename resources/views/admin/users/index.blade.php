@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 
-@section('content')
+@section('admin_content')
 
     <h1>Użytkownicy:</h1>
 
     @if($users)
 
-    <table class="table">
+    <table class="table table-condensed table-hover">
        <thead>
          <tr>
             <th>Id</th>
