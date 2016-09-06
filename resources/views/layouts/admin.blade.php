@@ -1,5 +1,6 @@
 @extends('layouts.master')
 
+
 @section('content')
     <div class="col-sm-3">
         <div class="panel-group" id="accordion">
@@ -50,8 +51,8 @@
                 </div>
                 <div id="collapse4" class="panel-collapse collapse">
                     <ul class="list-group">
-                        <li class="list-group-item">Pokaż/Dodaj</li>
-                        <li class="list-group-item">Edytuj</li>
+                        <li class="list-group-item"><a href="{{route('media.create')}}">Dodaj</a></li>
+                        <li class="list-group-item"><a href="{{route('media.index')}}">Pokaż / Edytuj</a></li>
                     </ul>
                 </div>
             </div>
