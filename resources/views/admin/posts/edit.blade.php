@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('admin_content')
+@section('content')
 
     <h1>Edytuj artykuł:</h1>
 

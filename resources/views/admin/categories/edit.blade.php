@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('admin_content')
+@section('content')
 
     <h1>Kategorie</h1>
 
@@ -30,9 +30,6 @@
     </div>
 
     <div class="col-sm-6">
-
-
-
 
 
     </div>

@@ -9,13 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Rally - Home Page</title>
+    <title>Blog Post - Start Bootstrap Template</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{{asset('css/admin.css')}}" rel="stylesheet">
+    <link href="{{asset('css/blog-post.css')}}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,8 +23,6 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-    @yield('styles')
 
 </head>
 
@@ -114,69 +112,7 @@
 
     <div class="row">
 
-        <div class="col-sm-3">
-            <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse1">Użytkownicy</a>
-                        </h4>
-                    </div>
-                    <div id="collapse1" class="panel-collapse collapse">
-                        <ul class="list-group">
-                            <li class="list-group-item"><a href="{{route('users.create')}}">Dodaj</a></li>
-                            <li class="list-group-item"><a href="{{route('users.index')}}">Pokaż / Edytuj</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse2">Artykuły i komentarze</a>
-                        </h4>
-                    </div>
-                    <div id="collapse2" class="panel-collapse collapse">
-                        <ul class="list-group">
-                            <li class="list-group-item"><a href="{{route('posts.create')}}">Dodaj</a></li>
-                            <li class="list-group-item"><a href="{{route('posts.index')}}">Pokaż / Edytuj</a></li>
-                            <li class="list-group-item"><a href="{{route('comments.index')}}">Wszystkie komentarze</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse3">Kategorie</a>
-                        </h4>
-                    </div>
-                    <div id="collapse3" class="panel-collapse collapse">
-                        <ul class="list-group">
-                            <li class="list-group-item"><a href="{{route('categories.create')}}">Dodaj</a></li>
-                            <li class="list-group-item"><a href="{{route('categories.index')}}">Pokaż / Edytuj</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse4">Media</a>
-                        </h4>
-                    </div>
-                    <div id="collapse4" class="panel-collapse collapse">
-                        <ul class="list-group">
-                            <li class="list-group-item"><a href="{{route('media.create')}}">Dodaj</a></li>
-                            <li class="list-group-item"><a href="{{route('media.index')}}">Pokaż / Edytuj</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-9">
-
             @yield('content')
-
-        </div>
 
     </div>
     <!-- /.row -->
@@ -203,10 +139,7 @@
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 
 @yield('scripts')
+
 </body>
 
 </html>
-
-
-
-

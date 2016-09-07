@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('admin_content')
+@section('content')
     <h1>Artykuły</h1>
 
     @if($posts)
@@ -16,6 +16,8 @@
             <th>Treść</th>
             <th>Utworzony</th>
             <th>Zaktualizowany</th>
+            <th>Link</th>
+            <th>Komentarze</th>
         </tr>
         </thead>
         <tbody>
@@ -31,6 +33,9 @@
             <td>{{str_limit($post->body, 10)}}</td>
             <td>{{$post->created_at->diffForHumans()}}</td>
             <td>{{$post->updated_at->diffForHumans()}}</td>
+            <td><a href="{{route('home.post', $post->id)}}">Zobacz artykuł</a></td>
+            <td><a href="{{route('comments.show', $post->id)}}">Zobacz komentarze</a></td>
+
         </tr>
 
             @endforeach

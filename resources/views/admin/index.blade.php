@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('admin_content')
+@section('content')
 
     <h1>Panel administracyjny</h1>
     <p>Zarządzaj kontami użytkowników, postami oraz kategoriami</p>

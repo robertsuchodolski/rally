@@ -6,7 +6,7 @@
 
 @stop
 
-@section('admin_content')
+@section('content')
 
     <h1>Dodaj zdjęcia</h1>
 
