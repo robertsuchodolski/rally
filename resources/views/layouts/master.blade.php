@@ -9,13 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blog Post - Start Bootstrap Template</title>
+    <title>Blog rajdowy - najlepszy blog o rajdach samochodowych</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{{asset('css/blog-post.css')}}" rel="stylesheet">
+    <link href="{{asset('css/blog-home.css')}}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,7 +28,7 @@
 
 <body>
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-fixed-top" data-spy="affix" data-offset-top="197">
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" data-spy="affix" data-offset-top="197">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -36,17 +36,17 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{url('/')}}">WebSiteName</a>
+            <a class="navbar-brand" href="{{url('/')}}">BLOG RAJDOWY</a>
         </div>
         <!-- /.navbar-header -->
 
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Aktualności</a></li>
+                <li class="active"><a href="{{route('index')}}">Aktualności</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">WRC<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Aktualności</a></li>
+                        <li><a href="{{route('wrc')}}">Aktualności</a></li>
                         <li><a href="#">Kalendarz</a></li>
                         <li><a href="#">Punktacja</a></li>
                     </ul>
@@ -54,7 +54,7 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">ERC<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Aktualności</a></li>
+                        <li><a href="{{route('erc')}}">Aktualności</a></li>
                         <li><a href="#">Kalendarz</a></li>
                         <li><a href="#">Punktacja</a></li>
                     </ul>
@@ -62,7 +62,7 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">RSMP<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Aktualności</a></li>
+                        <li><a href="{{route('rsmp')}}">Aktualności</a></li>
                         <li><a href="#">Kalendarz</a></li>
                         <li><a href="#">Punktacja</a></li>
                     </ul>
@@ -70,9 +70,9 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Inne<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Aktualności</a></li>
-                        <li><a href="#">Kalendarz</a></li>
-                        <li><a href="#">Punktacja</a></li>
+                        <li><a href="{{route('dakar')}}">Dakar</a></li>
+                        <li><a href="{{route('formula1')}}">Formula 1</a></li>
+                        <li><a href="{{route('rallycross')}}">RallyCross</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Galeria</a></li>
@@ -112,7 +112,8 @@
 
     <div class="row">
 
-            @yield('content')
+        @yield('content')
+
 
     </div>
     <!-- /.row -->
@@ -123,8 +124,9 @@
     <footer>
         <div class="row">
             <div class="col-lg-12">
-                <p>Copyright &copy; Your Website 2014</p>
+                <p>Wszelkie prawa zastrzeżone &copy; Rally Portal 2016</p>
             </div>
+            <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
     </footer>
@@ -137,8 +139,6 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
-
-@yield('scripts')
 
 </body>
 
