@@ -18,7 +18,16 @@ class CommentRepliesController extends Controller
      */
     public function index()
     {
-        //
+
+    }
+
+    public function userReplies(){
+
+
+
+        $replies = CommentReply::where('author', Auth::user()->name)->paginate(5);
+
+        return view ('user.comments.replies.index', compact('replies'));
     }
 
     /**
@@ -74,7 +83,7 @@ class CommentRepliesController extends Controller
 
         $replies = $comment->replies;
 
-        return view('admin.comments.replies.show', compact('replies'));
+        return view('admin.comments.replies.show', compact('replies', 'comment'));
     }
 
     /**

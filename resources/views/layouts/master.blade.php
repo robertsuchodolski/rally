@@ -1,145 +1,161 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-
-    <meta charset="utf-8">
+    <!-- Site made with Mobirise Website Builder v3.6.1, https://mobirise.com -->
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="generator" content="Mobirise v3.6.1, mobirise.com">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{{asset('images/logo.png')}}" type="image/x-icon">
     <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>Blog rajdowy - najlepszy blog o rajdach samochodowych</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;subset=latin">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900">
+    <link rel="stylesheet" href="{{asset('css/et-line-font-plugin/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap-material-design-font/css/material.css')}}">
+    <link rel="stylesheet" href="{{asset('css/tether/tether.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/socicon/css/socicon.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/animate.css/animate.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/dropdown/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/theme/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/mobirise-gallery/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/mobirise/css/mbr-additional.css')}}" type="text/css">
 
-    <!-- Bootstrap Core CSS -->
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    @yield('styles')
 
-    <!-- Custom CSS -->
-    <link href="{{asset('css/blog-home.css')}}" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
 </head>
-
 <body>
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" data-spy="affix" data-offset-top="197">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{url('/')}}">BLOG RAJDOWY</a>
-        </div>
-        <!-- /.navbar-header -->
+<section id="menu-0">
 
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="{{route('index')}}">Aktualności</a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">WRC<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{route('wrc')}}">Aktualności</a></li>
-                        <li><a href="#">Kalendarz</a></li>
-                        <li><a href="#">Punktacja</a></li>
+    <nav class="navbar navbar-dropdown bg-color transparent navbar-fixed-top">
+        <div class="container">
+
+            <div class="mbr-table">
+                <div class="mbr-table-cell">
+
+                    <div class="navbar-brand">
+                        <a href="{{route('index')}}" class="navbar-logo"><img src="{{asset('images/logo.png')}}" alt="Mobirise"></a>
+                        <a class="navbar-caption" href="{{route('index')}}">shakedown</a>
+                    </div>
+
+
+
+                </div>
+                <div class="mbr-table-cell">
+
+                    <button class="navbar-toggler pull-xs-right hidden-md-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+                        <div class="hamburger-icon"></div>
+                    </button>
+
+                    <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar">
+                        <li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="{{route('gallery')}}">galeria</a></li>
+                        <li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="{{route('about')}}">o nas</a></li>
+                            @if (Auth::guest())
+                                <li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="{{url('register')}}" >zarejestruj się</a></li>
+                                <li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="{{route('login')}}">zaloguj się</a></li>
+                            @else
+                            <li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="{{route('article.create')}}">dodaj artykuł</a></li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="">
+                                         {{ Auth::user()->name }}</a>
+                                        <div class="dropdown-menu">
+                                            @if(Auth::user()->role->name == 'administrator')
+                                            <a class="dropdown-item" href="{{url('/user')}}">Mój profil</a>
+                                            <a class="dropdown-item" href="{{url('/admin/index')}}">Zarządzaj</a>
+                                                @else
+                                                <a class="dropdown-item" href="{{url('/user')}}">Mój profil</a>
+                                            @endif
+
+                                            <a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Wyloguj się</a>
+
+                                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                            </form>
+                                        </div>
+                                </li>
+                        @endif
+
                     </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">ERC<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{route('erc')}}">Aktualności</a></li>
-                        <li><a href="#">Kalendarz</a></li>
-                        <li><a href="#">Punktacja</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">RSMP<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{route('rsmp')}}">Aktualności</a></li>
-                        <li><a href="#">Kalendarz</a></li>
-                        <li><a href="#">Punktacja</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Inne<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{route('dakar')}}">Dakar</a></li>
-                        <li><a href="{{route('formula1')}}">Formula 1</a></li>
-                        <li><a href="{{route('rallycross')}}">RallyCross</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Galeria</a></li>
-                <li><a href="#">O Nas</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                @if (Auth::guest())
-                    <li><a href="{{ url('/register')}}"><span class="glyphicon glyphicon-user"></span> Zarejestruj się</a></li>
-                    <li><a href="{{ url('/login')}}"><span class="glyphicon glyphicon-log-in"></span> Zaloguj się</a></li>
-                @else
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->name }}
-                        </a>
+                    <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+                        <div class="close-icon"></div>
+                    </button>
 
 
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{url('/admin')}}"><span class="glyphicon glyphicon-wrench"></span> Ustawienia</a></li>
-                            <li>
-                                <a href="{{ url('/logout') }}"
-                                   onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-out"></span> Wyloguj się</a>
 
-                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                @endif
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!-- Page Content -->
-<div class="container">
-
-    <div class="row">
-
-        @yield('content')
-
-
-    </div>
-    <!-- /.row -->
-
-    <hr>
-
-    <!-- Footer -->
-    <footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <p>Wszelkie prawa zastrzeżone &copy; Rally Portal 2016</p>
+                </div>
             </div>
-            <!-- /.col-lg-12 -->
+
         </div>
-        <!-- /.row -->
-    </footer>
+    </nav>
 
-</div>
-<!-- /.container -->
+</section>
 
-<!-- jQuery -->
-<script src="{{asset('js/jquery.js')}}"></script>
+@yield('content')
 
-<!-- Bootstrap Core JavaScript -->
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
 
+
+<section class="mbr-section mbr-section-md-padding mbr-footer footer1" id="contacts1-0" style="background-color: rgb(46, 46, 46); padding-top: 90px; padding-bottom: 90px;">
+
+    <div class="container">
+        <div class="row">
+            <div class="mbr-footer-content col-xs-12 col-md-3">
+                <div><img src="{{asset('images/logo.png')}}"></div>
+            </div>
+            <div class="mbr-footer-content col-xs-12 col-md-3">
+                <p><strong>Adres</strong><br>
+                    Robert Suchodolski</p>
+            </div>
+            <div class="mbr-footer-content col-xs-12 col-md-3">
+                <p><strong>Kontakt</strong><br>
+                    Email: suchodolskirobert87@gmail.com<br>
+            </div>
+            <div class="mbr-footer-content col-xs-12 col-md-3">
+                <p><strong>Linki</strong><br>
+                    <a class="text-primary" href="https://wrc.com/" target="_blank">WRC</a><br>
+                    <a class="text-primary" href="https://rajdy24.pl" target="_blank">rajdy24.pl</a><br>
+                    <a class="text-primary" href="https://wrc.net.pl" target="_blank">Magazyn WRC</a></p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer class="mbr-small-footer mbr-section mbr-section-nopadding" id="footer1-2" style="background-color: rgb(50, 50, 50); padding-top: 1.75rem; padding-bottom: 1.75rem;">
+
+    <div class="container">
+        <p class="text-xs-center">&copy; 2016 <a href="{{route('index')}}">shakedown</a>, Robert Suchodolski</p>
+    </div>
+</footer>
+
+
+<script src="{{asset('js/web/assets/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('js/tether/tether.min.js')}}"></script>
+<script src="{{asset('js/bootstrap/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('js/smooth-scroll/SmoothScroll.js')}}"></script>
+<script src="{{asset('js/viewportChecker/jquery.viewportchecker.js')}}"></script>
+<script src="{{asset('js/dropdown/js/script.min.js')}}"></script>
+<script src="{{asset('js/touchSwipe/jquery.touchSwipe.min.js')}}"></script>
+<script src="{{asset('js/jarallax/jarallax.js')}}"></script>
+<script src="{{asset('js/masonry/masonry.pkgd.min.js')}}"></script>
+<script src="{{asset('js/imagesloaded/imagesloaded.pkgd.min.js')}}"></script>
+<script src="{{asset('js/cookies-alert-plugin/cookies-alert-core.js')}}"></script>
+<script src="{{asset('js/cookies-alert-plugin/cookies-alert-script.js')}}"></script>
+<script src="{{asset('js/bootstrap-carousel-swipe/bootstrap-carousel-swipe.js')}}"></script>
+<script src="{{asset('js/social-likes/social-likes.js')}}"></script>
+<script src="{{asset('js/theme/js/script.js')}}"></script>
+<script src="{{asset('js/mobirise-gallery/script.js')}}"></script>
+
+@yield('scripts')
+
+
+
+
+<input name="animation" type="hidden">
+<input name="cookieData" type="hidden" data-cookie-text="We use cookies to give you the best experience. Read our <a href='privacy.html'>cookie policy</a>.">
 </body>
-
 </html>

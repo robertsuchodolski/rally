@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('imgages/logo.png')}}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{asset('imgages/logo.png')}}">
+    <link rel="icon" type="image/png" href="assets/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Blog Rajdowy - Panel Administracyjny</title>
+    <title>shakedown - panel administracyjny</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
+
 
     <!-- Bootstrap core CSS     -->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" />
@@ -17,64 +17,72 @@
     <!-- Animation library for notifications   -->
     <link href="{{asset('css/animate.min.css')}}" rel="stylesheet"/>
 
-    <!--  Paper Dashboard core CSS    -->
-    <link href="{{asset('css/paper-dashboard.css')}}" rel="stylesheet"/>
-
-    <!--  Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-    <link href="{{asset('css/themify-icons.css')}}" rel="stylesheet">
-
-
-    <link rel="stylesheet" href="{{asset('css/bootstrap/css/bootstrap.min.css')}}">
-
-    <link rel="stylesheet" href="{{asset('css/theme/css/style.css')}}">
-
-    <link rel="stylesheet" href="{{asset('css/mobirise/css/mbr-additional.css')}}" type="text/css">
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="{{asset('css/light-bootstrap-dashboard.css')}}" rel="stylesheet"/>
 
     @yield('styles')
+
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="{{asset('css/pe-icon-7-stroke.css')}}" rel="stylesheet" />
 
 </head>
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-background-color="black" data-active-color="warning">
+    <div class="sidebar" data-color="grey" data-image="{{asset('images/wrc-sidebar.jpg')}}" >
+
+        <!--
+
+            Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+            Tip 2: you can also add an image using data-image tag
+
+        -->
 
         <div class="sidebar-wrapper">
             <div class="logo">
-                <a href="" class="navbar-logo"><img height="25" src="{{asset('images/logo.png')}}" alt="Blog Rajdowy"></a>
-                <a class="navbar-caption" href="{{route('index')}}">BLOG RAJDOWY</a>
+                <a href="{{route('index')}}" class="simple-text">
+                    shakedown
+                </a>
             </div>
 
             <ul class="nav">
-                <li class="active">
+                <li class="item {{active_route('admin.index')}}">
+                    <a href="{{route('admin.index')}}">
+                        <i class="pe-7s-graph"></i>
+                        <p>Statystyki</p>
+                    </a>
+                </li>
+                <li class="item {{active_route('users.index')}}">
                     <a href="{{route('users.index')}}">
-                        <i class="ti-user"></i>
+                        <i class="pe-7s-users"></i>
                         <p>Użytkownicy</p>
                     </a>
                 </li>
-                <li>
+                <li class="item {{active_route('posts.index')}}">
                     <a href="{{route('posts.index')}}">
-                        <i class="ti-list-ol"></i>
+                        <i class="pe-7s-news-paper"></i>
                         <p>Artykuły</p>
                     </a>
                 </li>
-                <li>
+                <li class="item {{active_route('comments.index')}}">
                     <a href="{{route('comments.index')}}">
-                        <i class="ti-comment"></i>
+                        <i class="pe-7s-comment"></i>
                         <p>Komentarze</p>
                     </a>
                 </li>
-                <li>
+                <li class="item {{active_route('categories.index')}}">
                     <a href="{{route('categories.index')}}">
-                        <i class="ti-tag"></i>
+                        <i class="pe-7s-ticket"></i>
                         <p>Kategorie</p>
                     </a>
                 </li>
-                <li>
+                <li class="item {{active_route('media.index')}}">
                     <a href="{{route('media.index')}}">
-                        <i class="ti-camera"></i>
-                        <p>Media</p>
+                        <i class="pe-7s-photo"></i>
+                        <p>Zdjęcia</p>
                     </a>
                 </li>
             </ul>
@@ -83,43 +91,18 @@
 
     <div class="main-panel">
 
-        <nav class="navbar navbar-default">
+        @yield('content')
+
+        <footer class="footer">
             <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar bar1"></span>
-                        <span class="icon-bar bar2"></span>
-                        <span class="icon-bar bar3"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Panel administracyjny</a>
-                </div>
-                <div class="collapse navbar-collapse">
-
-
-                </div>
+                <p class="copyright pull-right">
+                    &copy; 2016 <a href="{{route('index')}}">shakedown</a>, Robert Suchodolski
+                </p>
             </div>
-        </nav>
+        </footer>
 
-        <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-
-                    @yield('content')
-
-                </div>
-            </div>
-        </div>
     </div>
-</div>
-
-
-<footer class="mbr-small-footer mbr-section mbr-section-nopadding" id="footer1-2" style="background-color: rgb(50, 50, 50); padding-top: 1.75rem; padding-bottom: 1.75rem;">
-
-    <div class="container">
-        <p class="text-xs-center">Wszelkie prawa autorskie zastrzeżone (c) 2016 Robert Suchodolski.</p>
     </div>
-</footer>
 
 </body>
 
@@ -128,7 +111,7 @@
 <script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
 
 <!--  Checkbox, Radio & Switch Plugins -->
-<script src="{{asset('js/bootstrap-checkbox-radio.js')}}"></script>
+<script src="{{asset('js/bootstrap-checkbox-radio-switch.js')}}"></script>
 
 <!--  Charts Plugin -->
 <script src="{{asset('js/chartist.min.js')}}"></script>
@@ -137,7 +120,10 @@
 <script src="{{asset('js/bootstrap-notify.js')}}"></script>
 
 <!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+<!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+<script src="{{asset('js/light-bootstrap-dashboard.js')}}"></script>
 
 @yield('scripts')
 

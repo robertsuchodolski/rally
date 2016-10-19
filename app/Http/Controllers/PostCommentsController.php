@@ -18,9 +18,16 @@ class PostCommentsController extends Controller
      */
     public function index()
     {
-        $comments = Comment::all();
+        $comments = Comment::paginate(10);
 
         return view('admin.comments.index', compact('comments'));
+    }
+
+    public function userComments(){
+
+        $comments = Comment::where('author', Auth::user()->name)->paginate(10);
+
+        return view ('user.comments.index', compact('comments'));
     }
 
     /**
@@ -47,7 +54,7 @@ class PostCommentsController extends Controller
             'post_id' => $request->post_id,
             'author' => $user->name,
             'email' => $user->email,
-            'photo' => $user->photo->file,
+            'photo' => ($user->photo ? $user->photo->file : 'https://placehold.it/64x64'),
             'body' => $request->body
         ];
 
@@ -72,6 +79,7 @@ class PostCommentsController extends Controller
 
         return view('/admin/comments/show', compact('comments'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

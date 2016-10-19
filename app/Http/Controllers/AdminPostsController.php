@@ -20,7 +20,7 @@ class AdminPostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at', 'desc')->paginate(5);
 
         return view('admin.posts.index', compact('posts'));
     }
@@ -115,7 +115,7 @@ class AdminPostsController extends Controller
 
         Auth::user()->posts()->whereId($id)->first()->update($input);
 
-        return redirect('/admin/posts');
+        return redirect('/user/article');
     }
 
     /**
@@ -137,17 +137,7 @@ class AdminPostsController extends Controller
         else
             $post->delete;
 
-        return redirect('/admin/posts');
+        return redirect('/user/article');
     }
 
-    public function post($id){
-
-        $post = Post::findOrFail($id);
-
-        $comments = $post->comments()->whereIsActive(1)->get();
-
-
-        return view('post', compact('post', 'comments'));
-
-    }
 }

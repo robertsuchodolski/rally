@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "dc821e0baa92c5615d33f3c68752349f",
-    "content-hash": "0ac60cdafe2814b8262d962a08e20d2b",
+    "hash": "7481c19c2e97dcf57397ef6208304713",
+    "content-hash": "7cb360e579543a234bc08d15996824df",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -305,6 +305,55 @@
                 "tokenizer"
             ],
             "time": "2015-12-05 17:17:57"
+        },
+        {
+            "name": "juy/active-menu",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/juy/ActiveMenu.git",
+                "reference": "6270b7380be3a1e1fc36d979ec8559ccc2622c64"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/juy/ActiveMenu/zipball/6270b7380be3a1e1fc36d979ec8559ccc2622c64",
+                "reference": "6270b7380be3a1e1fc36d979ec8559ccc2622c64",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/routing": "5.1.*||5.2.*||5.3.*",
+                "illuminate/support": "5.1.*||5.2.*||5.3.*"
+            },
+            "type": "laravel-package",
+            "autoload": {
+                "psr-4": {
+                    "Juy\\ActiveMenu\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Juy Software",
+                    "email": "package@juysoft.com",
+                    "homepage": "http://juysoft.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The helper class for Laravel applications to get active class base on current route name",
+            "homepage": "https://github.com/juy/ActiveMenu",
+            "keywords": [
+                "active",
+                "class",
+                "laravel",
+                "menu"
+            ],
+            "time": "2016-09-23 19:50:05"
         },
         {
             "name": "laravel/framework",

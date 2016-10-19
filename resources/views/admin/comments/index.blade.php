@@ -2,82 +2,127 @@
 
 @section('content')
 
-    @if(count($comments) > 0)
+    <nav class="navbar navbar-default navbar-fixed">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{route('comments.index')}}">Komentarze</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="btn" href="#" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Wyloguj się</a>
 
-        <h1>Wszystkie komentarze</h1>
+                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <table class="table">
-       <thead>
-         <tr>
-            <th>Id</th>
-            <th>Autor</th>
-            <th>Email</th>
-            <th>Treść</th>
-            <th>Utworzony</th>
-            <th>Link</th>
-         </tr>
-       </thead>
-       <tbody>
-            @foreach($comments as $comment)
 
-         <tr>
-            <td>{{$comment->id}}</td>
-            <td>{{$comment->author}}</td>
-            <td>{{$comment->email}}</td>
-            <td>{{$comment->body}}</td>
-            <td>{{$comment->created_at->diffForHumans()}}</td>
-            <td><a href="{{route('home.post', $comment->post->id)}}">Zobacz artykuł</a></td>
-            <td><a href="{{route('replies.show', $comment->id)}}">Zobacz odpowiedzi</a></td>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
 
-            <td>
-                @if($comment->is_active == 1)
+                        @if(count($comments) > 0)
 
-                    {!!Form::model($comment, ['method'=>'PATCH', 'action'=>['PostCommentsController@update', $comment->id]])!!}
+                        <div class="header">
+                            <h4 class="title">Komentarze</h4>
+                            <p class="category">Komentarze dodane przez użytkowników</p>
+                        </div>
+                        <div class="content table-responsive table-full-width">
 
-                    <input type="hidden" name="is_active" value="0">
+                                <table class="table table-condensed">
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Autor</th>
+                                        <th>Treść</th>
+                                        <th>Utworzony</th>
+                                        <th>Artykuł</th>
+                                        <th>Odpowiedzi</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($comments as $comment)
 
-                        <div class="form-group">
-                            {!! Form::submit('Dezaktywuj', ['class'=>'btn btn-success']) !!}
+                                        <tr>
+                                            <td>{{$comment->id}}</td>
+                                            <td>{{$comment->author}}</td>
+                                            <td>{{$comment->body}}</td>
+                                            <td>{{$comment->created_at->diffForHumans()}}</td>
+                                            <td><a href="{{route('home.post', $comment->post->id)}}">Zobacz artykuł</a></td>
+                                            <td><a href="{{route('replies.show', $comment->id)}}">Zobacz odpowiedzi</a></td>
+
+                                            <td>
+                                                @if($comment->is_active == 1)
+
+                                                    {!!Form::model($comment, ['method'=>'PATCH', 'action'=>['PostCommentsController@update', $comment->id]])!!}
+
+                                                    <input type="hidden" name="is_active" value="0">
+
+                                                        {!! Form::submit('Aktywny', ['class'=>'btn btn-success btn-fill btn-xs']) !!}
+
+                                                    {!! Form::close() !!}
+
+                                                @else
+
+                                                    {!!Form::model($comment, ['method'=>'PATCH', 'action'=>['PostCommentsController@update', $comment->id]])!!}
+
+                                                    <input type="hidden" name="is_active" value="1">
+
+                                                        {!! Form::submit('Nieaktywny', ['class'=>'btn btn-warning btn-fill btn-xs']) !!}
+
+                                                    {!! Form::close() !!}
+
+                                                @endif
+                                            </td>
+
+                                            <td>
+
+                                                {!!Form::open(['method'=>'DELETE', 'action'=>['PostCommentsController@destroy', $comment->id]])!!}
+                                                    {!! Form::submit('Usuń', ['class'=>'btn btn-danger btn-fill btn-xs']) !!}
+                                                {!! Form::close() !!}
+
+                                            </td>
+
+                                        </tr>
+
+                                    @endforeach
+
+                                    </tbody>
+                                </table>
+
+
+
+
+                        </div>
+                        <div class="footer text-center">
+                            {{$comments->render()}}
                         </div>
 
-                    {!! Form::close() !!}
+                        @else
+                            <h1 class="text-center">Brak komentarzy<br><small>Nikt nie dodał jeszcze komentarzy</small></h1>
 
-                    @else
-
-                    {!!Form::model($comment, ['method'=>'PATCH', 'action'=>['PostCommentsController@update', $comment->id]])!!}
-
-                    <input type="hidden" name="is_active" value="1">
-
-                    <div class="form-group">
-                        {!! Form::submit('Aktywuj', ['class'=>'btn btn-info']) !!}
+                        @endif
                     </div>
-
-                    {!! Form::close() !!}
-
-                    @endif
-            </td>
-
-            <td>
-
-                {!!Form::open(['method'=>'DELETE', 'action'=>['PostCommentsController@destroy', $comment->id]])!!}
-
-                <div class="form-group">
-                    {!! Form::submit('Usuń', ['class'=>'btn btn-danger']) !!}
                 </div>
 
-                {!! Form::close() !!}
-
-            </td>
-
-         </tr>
-
-            @endforeach
-
-       </tbody>
-     </table>
-
-        @else
-        <h1 class="text-center">Brak komentarzy</h1>
-
-    @endif
+            </div>
+        </div>
+    </div>
 @stop
+
+
